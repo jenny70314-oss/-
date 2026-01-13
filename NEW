@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>PetConsign Pro - 寄賣管理系統</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#6366f1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Babel 用於瀏覽器端即時轉譯 TSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        background-color: #f8fafc;
+        -webkit-tap-highlight-color: transparent;
+        overflow-x: hidden;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .safe-top { padding-top: env(safe-area-inset-top); }
+      .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+      #error-display {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: white;
+        padding: 40px;
+        z-index: 9999;
+        color: #e11d48;
+      }
+      .loading-spinner {
+        border: 3px solid rgba(99, 102, 241, 0.1);
+        border-top: 3px solid #6366f1;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0",
+    "recharts": "https://esm.sh/recharts@2.13.0",
+    "xlsx": "https://esm.sh/xlsx@0.18.5",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="antialiased">
+    <div id="root">
+      <div class="flex flex-col items-center justify-center h-screen bg-slate-50">
+        <div class="loading-spinner mb-4"></div>
+        <p class="text-slate-500 font-bold text-sm tracking-widest animate-pulse">系統初始化中...</p>
+      </div>
+    </div>
+    
+    <div id="error-display">
+      <h1 class="text-2xl font-black mb-4 tracking-tight">系統啟動異常</h1>
+      <p id="error-message" class="font-mono text-xs bg-slate-50 p-4 rounded-2xl border border-slate-200 leading-relaxed"></p>
+      <button onclick="location.reload()" class="mt-6 w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200">重新嘗試載入</button>
+    </div>
+
+    <!-- 使用 Babel 直接載入 index.tsx -->
+    <script type="text/babel" data-type="module" data-presets="typescript,react">
+      import "./index.tsx";
+    </script>
+
+    <script>
+      window.onerror = function(msg, url, lineNo, columnNo, error) {
+        document.getElementById('error-display').style.display = 'block';
+        document.getElementById('error-message').textContent = msg + '\n' + url + ':' + lineNo;
+        return false;
+      };
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
