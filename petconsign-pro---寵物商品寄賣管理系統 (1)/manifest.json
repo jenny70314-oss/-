@@ -1,0 +1,18 @@
+
+{
+  "short_name": "PetConsign",
+  "name": "PetConsign Pro 寄賣管理",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3047/3047928.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6366f1",
+  "background_color": "#f8fafc",
+  "orientation": "portrait"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "PetConsign Pro - 寵物商品寄賣管理系統",
+  "description": "專為寵物商品寄賣設計的庫存與銷量統計工具，支持多分類管理、利潤計算與數據可視化。",
+  "requestFramePermissions": []
+}
